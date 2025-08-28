@@ -1,0 +1,33 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: "SOLICITUDES"
+  devtools:
+    add-properties: false
+#  h2:
+#    console:
+#      enabled: true
+#      path: "/h2"
+  profiles:
+    include: null
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+cors:
+  allowed-origins: "http://localhost:4201,http://localhost:8081"
+
+adapters:
+  r2dbc:
+    host: localhost
+    port: 5432
+    database: postgres_db
+    schema: public
+    username: postgres
+    password: postgres
