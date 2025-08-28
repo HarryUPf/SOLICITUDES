@@ -7,6 +7,8 @@ import co.com.bancolombia.r2dbc.data.SolicitudData;
 import co.com.bancolombia.r2dbc.helper.ReactiveAdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Mono;
 
 import java.util.stream.Stream;
 
@@ -31,6 +33,14 @@ public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
                         .findFirst()
                         .orElse(null)) // Or throw an exception for data integrity
                 .build());
+    }
+
+    @Override
+    @Transactional
+    public Mono<Solicitud> save(Solicitud entity) {
+        // By annotating here, the transaction is managed at the infrastructure boundary
+        // for this specific persistence operation.
+        return super.save(entity);
     }
 
     @Override
