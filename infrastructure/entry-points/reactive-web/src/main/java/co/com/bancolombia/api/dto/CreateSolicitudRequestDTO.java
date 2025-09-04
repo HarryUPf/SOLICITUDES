@@ -1,4 +1,4 @@
-package co.com.bancolombia.model.solicitud;
+package co.com.bancolombia.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,15 +9,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
-@Builder(toBuilder = true)
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Solicitud {
-    private Integer id;
+public class CreateSolicitudRequestDTO {
     private Integer idUser;
     private Integer dni;
     private BigDecimal monto;
     private LocalDate fechaPlazo;
     private Integer idTipoPrestamo;
-    private EstadoSolicitud estado;
+    private String estado;
 }

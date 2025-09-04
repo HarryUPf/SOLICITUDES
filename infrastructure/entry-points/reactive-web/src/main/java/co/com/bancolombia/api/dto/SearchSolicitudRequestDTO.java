@@ -1,5 +1,6 @@
-package co.com.bancolombia.model.solicitud;
+package co.com.bancolombia.api.dto;
 
+import co.com.bancolombia.model.solicitud.EstadoSolicitud;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,10 +10,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
-@Builder(toBuilder = true)
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Solicitud {
+public class SearchSolicitudRequestDTO {
+    // Fields that can be used as search criteria.
+    // These are all optional for a flexible search.
     private Integer id;
     private Integer idUser;
     private Integer dni;

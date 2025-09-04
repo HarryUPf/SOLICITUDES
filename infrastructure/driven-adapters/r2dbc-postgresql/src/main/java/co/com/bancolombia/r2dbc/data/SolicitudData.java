@@ -14,11 +14,13 @@ public class SolicitudData {
 
     @Id
     private Integer id;
+    @Column("id_user")
+    private Integer idUser;
     private Integer dni;
     private BigDecimal monto;
     @Column("fecha_plazo")
     private LocalDate fechaPlazo;
-    @Column("tipo_prestamo_id")
-    private Integer tipoPrestamoId;
+    @Column("id_tipo_prestamo")
+    private Integer idTipoPrestamo;
     private String estado;
 }

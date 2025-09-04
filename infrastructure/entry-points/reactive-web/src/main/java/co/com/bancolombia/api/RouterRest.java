@@ -13,9 +13,9 @@ public class RouterRest {
     @Bean
     public RouterFunction<ServerResponse> routerFunction(Handler handler) {
         return route(POST("/api/v1/solicitud"), handler::createSolicitud)
-                .andRoute(GET("/api/v1/solicitud"), handler::findSolicitudes)
+//                .andRoute(GET("/api/v1/solicitud"), handler::findSolicitudes)
                 .andRoute(POST("/api/v1/solicitud/search"), handler::searchSolicitudes)
-//                .andRoute(GET("/api/v1/solicitud/{id}"), handler::getSolicitudById)
+                .andRoute(POST("/api/v1/solicitud/search/summary"), handler::searchSolicitudesSummary)
                 ;
     }
 }

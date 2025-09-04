@@ -13,33 +13,31 @@ import reactor.core.publisher.Mono;
 import java.util.stream.Stream;
 
 @Repository
-// TODO: Rename this file to MyReactiveRepositoryAdapter.java
 public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
-        Solicitud,       // Domain Model
-        SolicitudData,   // Data Model
-        Integer,         // ID type
-        MyReactiveRepository // Spring Data R2DBC repository
+        Solicitud,
+        SolicitudData,
+        Integer,
+        MyReactiveRepository
         > implements SolicitudRepository {
 
     public MyReactiveRepositoryAdapter(MyReactiveRepository repository, ObjectMapper mapper) {
         super(repository, mapper, d -> Solicitud.builder()
                 .id(d.getId())
+                .idUser(d.getIdUser())
                 .dni(d.getDni())
                 .monto(d.getMonto())
                 .fechaPlazo(d.getFechaPlazo())
-                .tipoPrestamoId(d.getTipoPrestamoId())
+                .idTipoPrestamo(d.getIdTipoPrestamo())
                 .estado(Stream.of(EstadoSolicitud.values())
                         .filter(e -> e.getValue().equalsIgnoreCase(d.getEstado()))
                         .findFirst()
-                        .orElse(null)) // Or throw an exception for data integrity
+                        .orElse(null))
                 .build());
     }
 
     @Override
     @Transactional
     public Mono<Solicitud> save(Solicitud entity) {
-        // By annotating here, the transaction is managed at the infrastructure boundary
-        // for this specific persistence operation.
         return super.save(entity);
     }
 
@@ -47,12 +45,12 @@ public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
     protected SolicitudData toData(Solicitud entity) {
         SolicitudData data = new SolicitudData();
         data.setId(entity.getId());
+        data.setIdUser(entity.getIdUser());
         data.setDni(entity.getDni());
         data.setMonto(entity.getMonto());
         data.setFechaPlazo(entity.getFechaPlazo());
-        data.setTipoPrestamoId(entity.getTipoPrestamoId());
+        data.setIdTipoPrestamo(entity.getIdTipoPrestamo());
         if (entity.getEstado() != null) {
-            // Map the enum to its string value for the database
             data.setEstado(entity.getEstado().getValue());
         }
         return data;
