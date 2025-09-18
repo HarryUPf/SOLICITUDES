@@ -17,13 +17,34 @@ management:
       probes:
         enabled: true
 cors:
-  allowed-origins: "http://localhost:4201,http://localhost:8081"
-
+  allowed-origins: "*"
 adapters:
   r2dbc:
+#    host: "db-bootcamp.c6d0um4u6vtu.us-east-1.rds.amazonaws.com"
     host: localhost
     port: 5432
-    database: bootcamp_db
-    schema: public
-    username: postgres
-    password: postgres
+    database: "bootcamp_db"
+    schema: "public"
+    username: "postgres"
+    password: "postgres"
+jwt:
+  secret: "a-very-long-and-secure-secret-key-that-is-at-least-256-bits-long-for-hs256"
+  expiration: 86400000
+adapter:
+  sqs:
+    region: "us-east-1"
+    queueUrlA: "https://sqs.us-east-1.amazonaws.com/585008082820/sendEmail"
+    queueUrlB: "https://sqs.us-east-1.amazonaws.com/585008082820/sendEmailCapacity"
+    endpoint: "https://sqs.us-east-1.amazonaws.com"
+entrypoint:
+  sqs:
+    region: "us-east-1"
+    endpoint: "https://sqs.us-east-1.amazonaws.com"
+    queueUrl: "https://sqs.us-east-1.amazonaws.com/585008082820/sendEmail"
+    waitTimeSeconds: 20
+    maxNumberOfMessages: 10
+    visibilityTimeoutSeconds: 10
+    numberOfThreads: 1
+
+services:
+  autenticacion: "http://localhost:8080/api/v1"

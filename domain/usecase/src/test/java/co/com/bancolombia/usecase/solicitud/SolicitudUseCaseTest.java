@@ -40,6 +40,7 @@ class SolicitudUseCaseTest {
                 .monto(new BigDecimal("50000.00"))
                 .fechaPlazo(LocalDate.now().plusYears(5))
                 .idTipoPrestamo(1)
+                .monto(new BigDecimal("5"))
                 .estado(EstadoSolicitud.PENDIENTE)
                 .build();
     }

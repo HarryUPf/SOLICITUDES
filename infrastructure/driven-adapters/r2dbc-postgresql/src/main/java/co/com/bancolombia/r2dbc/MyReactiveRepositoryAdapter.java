@@ -28,6 +28,7 @@ public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
                 .monto(d.getMonto())
                 .fechaPlazo(d.getFechaPlazo())
                 .idTipoPrestamo(d.getIdTipoPrestamo())
+                .tazaInteres(d.getTazaInteres())
                 .estado(Stream.of(EstadoSolicitud.values())
                         .filter(e -> e.getValue().equalsIgnoreCase(d.getEstado()))
                         .findFirst()
@@ -50,6 +51,7 @@ public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
         data.setMonto(entity.getMonto());
         data.setFechaPlazo(entity.getFechaPlazo());
         data.setIdTipoPrestamo(entity.getIdTipoPrestamo());
+        data.setTazaInteres(entity.getTazaInteres());
         if (entity.getEstado() != null) {
             data.setEstado(entity.getEstado().getValue());
         }

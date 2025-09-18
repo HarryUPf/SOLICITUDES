@@ -18,5 +18,6 @@ public class CreateSolicitudRequestDTO {
     private BigDecimal monto;
     private LocalDate fechaPlazo;
     private Integer idTipoPrestamo;
+    private BigDecimal tazaInteres;
     private String estado;
 }

@@ -22,5 +22,7 @@ public class SolicitudData {
     private LocalDate fechaPlazo;
     @Column("id_tipo_prestamo")
     private Integer idTipoPrestamo;
+    @Column("taza_interes")
+    private BigDecimal tazaInteres;
     private String estado;
 }

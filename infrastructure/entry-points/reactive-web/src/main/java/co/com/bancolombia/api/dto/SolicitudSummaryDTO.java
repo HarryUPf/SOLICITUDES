@@ -17,10 +17,10 @@ public class SolicitudSummaryDTO {
     private Integer idUser;
     private BigDecimal monto;
     private LocalDate fechaPlazo;
-    private String email;
-    private String fullName;
+//    private String email = "cliente@example.com";
+//    private String fullName = "Joe Doe";
     private Integer idTipoPrestamo;
-    private BigDecimal tasaInteres;
+    private BigDecimal tazaInteres;
     private EstadoSolicitud estado;
-    private BigDecimal salarioBase;
+//    private BigDecimal salarioBase = BigDecimal.valueOf(50000.00);
 }
