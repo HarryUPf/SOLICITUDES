@@ -36,7 +36,19 @@ public class SQSSender implements NotificationGateway {
 //    }
 
     @Override
-    public Mono<Void> sendSQSTest(Solicitud solicitud) {
+    public Mono<Void> sendSQSStatusRechazado(Integer loanId) {
+        try {
+            String message = objectMapper.writeValueAsString(loanId);
+            log.info("Sending sendSQSStatusChange for Solicitud: {}", loanId);
+            return send(message, properties.queueUrlC())
+                    .then(); // Convert Mono<String> to Mono<Void>
+        } catch (JsonProcessingException e) {
+            return Mono.error(new RuntimeException("Error serializing Solicitud id to JSON", e));
+        }
+    }
+
+    @Override
+    public Mono<Void> sendSQSStatusChange(Solicitud solicitud) {
         try {
             String message = objectMapper.writeValueAsString(solicitud);
             log.info("Sending status update notification for Solicitud: {}", solicitud);

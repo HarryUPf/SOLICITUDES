@@ -40,11 +40,6 @@ public class SecurityConfig {
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .addFilterAt(jwtAuthorizationFilter, SecurityWebFiltersOrder.HTTP_BASIC)
                 .authorizeExchange(exchange -> exchange
-//                        // Rutas públicas que no requieren autenticación
-//                        .pathMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
-//                        // Documentación de Swagger
-//                        .pathMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/webjars/**").permitAll()
-//                        // Todas las demás rutas requieren autenticación
                         .anyExchange().authenticated()
                 )
                 .build();

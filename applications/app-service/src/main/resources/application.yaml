@@ -20,8 +20,8 @@ cors:
   allowed-origins: "*"
 adapters:
   r2dbc:
-#    host: "db-bootcamp.c6d0um4u6vtu.us-east-1.rds.amazonaws.com"
-    host: localhost
+    host: "db-bootcamp.c6d0um4u6vtu.us-east-1.rds.amazonaws.com"
+#    host: localhost
     port: 5432
     database: "bootcamp_db"
     schema: "public"
@@ -35,12 +35,13 @@ adapter:
     region: "us-east-1"
     queueUrlA: "https://sqs.us-east-1.amazonaws.com/585008082820/sendEmail"
     queueUrlB: "https://sqs.us-east-1.amazonaws.com/585008082820/sendEmailCapacity"
+    queueUrlC: "https://sqs.us-east-1.amazonaws.com/585008082820/dynamoStatusRechazado"
     endpoint: "https://sqs.us-east-1.amazonaws.com"
 entrypoint:
   sqs:
     region: "us-east-1"
     endpoint: "https://sqs.us-east-1.amazonaws.com"
-    queueUrl: "https://sqs.us-east-1.amazonaws.com/585008082820/sendEmail"
+    queueUrl: "https://sqs.us-east-1.amazonaws.com/585008082820/getSolicitudStatus"
     waitTimeSeconds: 20
     maxNumberOfMessages: 10
     visibilityTimeoutSeconds: 10

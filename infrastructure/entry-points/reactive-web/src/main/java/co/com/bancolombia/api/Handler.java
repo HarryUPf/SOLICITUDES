@@ -1,11 +1,6 @@
 package co.com.bancolombia.api;
 
-import co.com.bancolombia.api.dto.CreateSolicitudRequestDTO;
-import co.com.bancolombia.api.dto.UserDTO;
-import co.com.bancolombia.api.dto.PaginatedResponseDTO;
-import co.com.bancolombia.api.dto.UpdateEstadoSolicitudDTO;
-import co.com.bancolombia.api.dto.SearchSolicitudRequestDTO;
-import co.com.bancolombia.api.dto.SolicitudSummaryDTO;
+import co.com.bancolombia.api.dto.*;
 import co.com.bancolombia.api.mapper.SolicitudApiMapper;
 import co.com.bancolombia.model.solicitud.Solicitud;
 import co.com.bancolombia.usecase.solicitud.SolicitudUseCase;
@@ -168,7 +163,8 @@ public class Handler {
                     if (dto.getId() == null) {
                         return Mono.error(new IllegalArgumentException("El 'id' de la solicitud es requerido en el cuerpo de la petición."));
                     }
-                    return solicitudUseCase.updateEstadoSolicitud(dto.getId(), dto.getEstado());
+
+                    return solicitudUseCase.updateEstadoSolicitud(dto.getId(), dto.getEstado(), false);
                 })
                 .flatMap(solicitudActualizada -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)

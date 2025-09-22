@@ -13,7 +13,6 @@ public class RouterRest {
     @Bean
     public RouterFunction<ServerResponse> routerFunction(Handler handler) {
         return route(POST("/api/v1/solicitud"), handler::createSolicitud)
-//                .andRoute(GET("/api/v1/solicitud"), handler::findSolicitudes)
                 .andRoute(POST("/api/v1/solicitud/search"), handler::searchSolicitudes)
                 .andRoute(POST("/api/v1/solicitud/search/summary"), handler::searchSolicitudesSummary)
                 .andRoute(PATCH("/api/v1/solicitud/estado"), handler::updateEstadoSolicitud)

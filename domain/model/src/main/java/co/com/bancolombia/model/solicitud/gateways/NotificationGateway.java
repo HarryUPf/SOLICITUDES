@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 import java.util.Map;
 
 public interface NotificationGateway {
-//    Mono<Void> sendStatusUpdateNotification(Solicitud solicitud);
     Mono<Void> sendSQSCapacity(Map<String, Object> message);
-    Mono<Void> sendSQSTest(Solicitud solicitud);
+    Mono<Void> sendSQSStatusChange(Solicitud solicitud);
+    Mono<Void> sendSQSStatusRechazado(Integer loanId);
 }
